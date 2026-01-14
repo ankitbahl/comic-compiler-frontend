@@ -4,6 +4,7 @@ import { useState } from "react";
 const useDownload = () => {
 
   const [downloadableComics, setDownloadableComics] = useState<{name: string, size: string}[]>([]);
+  const [downloadProgress, setDownloadProgress] = useState<number | null>(null);
 
   const getDownloadableComics = async (): Promise<{ name: string, size: string }[]> => {
     const res = await getWithAxios('/downloadable-comics');
@@ -12,7 +13,7 @@ const useDownload = () => {
   };
 
   const downloadComic = async (comic: string) => {
-    const res = await postWithAxiosBlob('/download-comic', {comic});
+    const res = await postWithAxiosBlob('/download-comic', {comic}, (progress) => setDownloadProgress(progress));
     downloadBlob(res.data, comic);
   }
 
@@ -27,7 +28,7 @@ const useDownload = () => {
     window.URL.revokeObjectURL(url)
   }
 
-  return { downloadableComics, downloadComic, getDownloadableComics }
+  return { downloadableComics, downloadComic, getDownloadableComics, downloadProgress }
 }
 
 export default useDownload;
