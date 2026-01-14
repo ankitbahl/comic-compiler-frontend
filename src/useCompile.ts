@@ -1,4 +1,4 @@
-import {getWithAxios, postWithAxios, postWithAxiosBlob} from "./axios.ts";
+import {getWithAxios, postWithAxios} from "./axios.ts";
 
 const useCompile = () => {
 

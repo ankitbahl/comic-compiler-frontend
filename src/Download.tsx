@@ -16,7 +16,7 @@ const Download = () => {
   }
 
   return <div className="selected-comic-list">
-    {downloadableComics.map((comicDatum, i) => selectedComicElement(comicDatum))}
+    {downloadableComics.map((comicDatum) => selectedComicElement(comicDatum))}
   </div>
 }
 

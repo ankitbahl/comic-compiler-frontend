@@ -3,7 +3,7 @@ import { useState } from "react";
 
 const useDownload = () => {
 
-  const [downloadableComics, setDownloadableComics] = useState<string[]>([]);
+  const [downloadableComics, setDownloadableComics] = useState<{name: string, size: string}[]>([]);
 
   const getDownloadableComics = async (): Promise<{ name: string, size: string }[]> => {
     const res = await getWithAxios('/downloadable-comics');
